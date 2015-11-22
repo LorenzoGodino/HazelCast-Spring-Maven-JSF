@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"	
+	xsi:schemaLocation="http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.hazelcast.com/schema/spring
+		http://www.hazelcast.com/schema/spring/hazelcast-spring.xsd
+		http://www.springframework.org/schema/data/jpa 
+		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<import resource="applicationContext-hazelcast.xml" />
+	
+	
+	<!-- Scan for all of Spring components such as Spring Service -->
+	<context:component-scan base-package="com.innovation.web"></context:component-scan>
+	<!-- Enable Spring Annotation Configuration -->
+	<context:annotation-config />
+	<context:spring-configured />
+	<!-- Necessary to get the entity manager injected into the factory bean -->
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<jpa:repositories base-package="com.innovation.web"></jpa:repositories>
+
+	<!-- Define Hibernate JPA Vendor Adapter -->
+	<bean id="jpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="database" value="MYSQL" />
+		<property name="showSql" value="true" />
+		<property name="generateDdl" value="true" />
+	</bean>
+	
+	<!-- Entity Manager Factory -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>
+		<property name="packagesToScan" value="com.innovation.web"></property>
+		
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/innovation" />
+		<property name="username" value="innovation" />
+		<property name="password" value="innovation2015" />
+	</bean>
+
+	<!-- Transaction Manager -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!-- Detect @Transactional -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+
+</beans>

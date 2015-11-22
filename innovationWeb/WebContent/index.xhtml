@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<title>innovationWeb</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport"></meta>
+
+</head>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport"></meta>
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="assets/css/web.css"></link>
+<h:body>
+
+
+
+	<div id="content">
+		<h:form>
+			<div class="row centered">
+				<div class="col-xs-6 col-sm-4 col-centered">
+					<h:outputLabel id="lblcompania" for="compania"
+						value="#{msg['compania']}:" />
+					<h:inputText id="compania" value="#{indexMB.busquedaDTO.compania}"></h:inputText>
+				</div>
+				<div class="col-xs-6 col-sm-4 ">
+					<h:outputLabel id="lblusuario" for="user"
+						value="#{msg['usuario']}:" />
+					<h:inputText id="user" value="#{indexMB.busquedaDTO.nombre}"></h:inputText>
+				</div>
+
+				<div class="col-xs-6 col-sm-4 ">
+					<h:outputLabel id="lblTelfono" for="telefono"
+						value="#{msg['telefono']}:" />
+					<h:inputText id="telefono" value="#{indexMB.busquedaDTO.telefono}"></h:inputText>
+				</div>
+			</div>
+			<div class="row">
+				<div
+					class="col-xs-12 col-sm-6 col-md-8  col-centered  col-md-offset-3">
+					<h:commandButton id="filtro"
+						actionListener="#{indexMB.filtroCompania}"
+						value="#{msg['filtrar']}" update="tableCompania"
+						styleClass="button large blue"></h:commandButton>
+
+				</div>
+			</div>
+			<div class="row row-centered">
+				<div
+					class="col-xs-12 col-sm-6 col-md-8  col-centered  col-md-offset-3">
+					<h:dataTable value="#{indexMB.lstUser}" var="user"
+						id="tableCompania" styleClass="order-table"
+						headerClass="order-table-header" 
+						rowClasses="order-table-odd-row,order-table-even-row">
+						<h:column>
+							<f:facet name="header">#{msg['id']}</f:facet>    				
+		      			#{user.id}
+		  					 </h:column>
+						<h:column>
+							<f:facet name="header">#{msg['compania']}</f:facet>    				
+		      			#{user.company}
+		  					 </h:column>
+						<h:column>
+							<f:facet name="header">#{msg['usuario']}</f:facet>    				
+		      			#{user.name}
+		  				 </h:column>
+						<h:column>
+							<f:facet name="header">#{msg['telefono']}</f:facet>    				
+		      			#{user.phone}
+		  				 </h:column>
+						<h:column>
+							<f:facet name="header">#{msg['numeroCuenta']}</f:facet>    				
+		      			#{user.iban}
+		  				 </h:column>
+
+
+					</h:dataTable>
+				</div>
+			</div>
+		</h:form>
+	</div>
+
+
+
+</h:body>
+
+</html>
