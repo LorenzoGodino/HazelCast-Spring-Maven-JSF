@@ -1,11 +1,9 @@
 package com.innovation.web.service.servicesImpl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
-import com.hazelcast.query.Predicate;
 import com.hazelcast.query.SqlPredicate;
 import com.innovation.web.comparator.UserComparator;
 import com.innovation.web.dto.ParamBusquedaDTO;
@@ -88,7 +85,7 @@ public class UserService implements IUserService {
 			ituser= userMapStore.values(new SqlPredicate(strConsulta)).iterator();
 		}else {
 		// Recuperamos todos los elementos
-			ituser = (Iterator<User>) userMapStore.values();
+			ituser = (Iterator<User>) userMapStore.values().iterator();
 		}
 		// Conversion de Array
 		while (ituser.hasNext()) {
