@@ -15,7 +15,7 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.hazelcast.query.Predicate;
 import com.hazelcast.query.SqlPredicate;
-import com.innovation.web.Comparator.UserComparator;
+import com.innovation.web.comparator.UserComparator;
 import com.innovation.web.dto.ParamBusquedaDTO;
 import com.innovation.web.model.User;
 import com.innovation.web.service.interfaces.IUserService;
