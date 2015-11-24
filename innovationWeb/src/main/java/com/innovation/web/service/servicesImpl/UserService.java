@@ -67,7 +67,7 @@ public class UserService implements IUserService {
 			// Si el Campo de la consulta nombre viene en blanco
 			if(!"".equals(dto.getNombre())){
 				if(!strConsulta.isEmpty()){
-					strConsulta = strConsulta + " and ";
+					strConsulta = strConsulta + " and x";
 				}
 				strConsulta =strConsulta +  "name like '" + "%" + dto.getNombre() + "%'";
 			}
