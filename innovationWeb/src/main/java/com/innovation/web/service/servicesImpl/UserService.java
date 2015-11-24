@@ -64,10 +64,10 @@ public class UserService implements IUserService {
 			if (!"".equals(dto.getCompania())) {
 				strConsulta = "company like '" + "%" + dto.getCompania() + "%'";
 			}
-			// Si el Campo de la consulta nombre viene en blanco
+			// Si el Campo de la consulta nombre viene en blanco cc
 			if(!"".equals(dto.getNombre())){
 				if(!strConsulta.isEmpty()){
-					strConsulta = strConsulta + " and x";
+					strConsulta = strConsulta + " and ";
 				}
 				strConsulta =strConsulta +  "name like '" + "%" + dto.getNombre() + "%'";
 			}
