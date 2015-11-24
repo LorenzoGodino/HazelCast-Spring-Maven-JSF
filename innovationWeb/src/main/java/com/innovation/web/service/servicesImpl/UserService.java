@@ -60,7 +60,7 @@ public class UserService implements IUserService {
 		List<User> lstUser = new ArrayList<User>();
 		// Si el dto viene en null
 		if (dto != null){
-			// Si el campo de la consulta compania viene distinto blanco.xxx
+			// Si el campo de la consulta compania viene distinto blanco.
 			if (!"".equals(dto.getCompania())) {
 				strConsulta = "company like '" + "%" + dto.getCompania() + "%'";
 			}
